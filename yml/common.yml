@@ -1,0 +1,72 @@
+location:
+  name:1.9 获取经纬度转换
+  desc:获取经纬度转换
+  method:get  
+  group:C
+  order:C1.9
+  params:
+    lon:
+      desc:精度
+      type:string
+      require:1
+      demoValue:104.2323
+    lat:
+      desc:维度
+      type:string
+      require:1
+      demoValue:30.3434
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        nation:
+          desc:国家
+          type:name
+          require:1
+        province:  
+          desc:省
+          type:string  
+          require:1
+        city:
+          desc:城市
+          type:int  
+          require:1
+        address:
+          desc:详情
+          type:int  
+          require:1
+order-msg:
+  name:2.0 随机获取订单滚动消息
+  desc:随机获取订单滚动消息
+  method:get  
+  group:C
+  order:C2.0
+merchants-apply:
+  name:2.1 商户申请入驻
+  desc:商户申请入驻
+  method:post
+  group:C
+  order:C2.1
+  params:
+    name:
+      desc:店家名称
+      type:string
+      require:1
+      demoValue:我是名称
+    contact_name:
+      desc:联系人名称
+      type:string
+      require:1
+      demoValue:张三
+    address:
+      desc:店家地址
+      type:string
+      require:1
+      demoValue:金科南路99号
+    phone:
+      desc:联系人手机号
+      type:phone
+      require:1
+      demoValue:'13812345678'

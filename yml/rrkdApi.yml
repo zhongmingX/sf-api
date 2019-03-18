@@ -1,0 +1,43 @@
+api:
+  name:接口文档  #接口名称
+  description:接口协议：HTTP POST<br/> 数据结构：JSON <br/>所有请求头需要指定Content-Type为：application/json </br> 分页需要GET传递 pageNum、pageIndex
+  setHeader:1 #是否开启header设置
+  cache:0 #是否启用缓存
+  loadApiTool:0 #开起API加载模块 默认开启
+  version:2.0.0 #接口版本号
+  groups: 
+    A:用户中心
+    B:订单中心
+    C:公用模块
+    D:在线商城
+    E:商铺区
+    F:兑换区
+    G:购物车
+    H:订单中心
+    I:商家中心
+    J:文章区
+    K:微信助力活动
+    O:用户卡包
+    S:海报活动
+  #接口公用输出 合并后续接口输出  
+  commonResponse:
+    status:
+      require:1
+      type:int
+      desc:接口请求状态
+      remark: 0 失败  1 成功
+    code:
+      require:1
+      type:int
+      desc:错误代码
+      remark:20001 
+    msg:
+      require:0
+      type:string
+      desc:错误消息
+      remark:鉴权失败
+    data:
+      require:0
+      type:object
+      desc:数据集
+      remark:

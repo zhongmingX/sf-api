@@ -1,0 +1,54 @@
+list:
+  name:1.1 海报列表
+  desc:海报列表
+  method:get
+  group:S
+  order:S1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:ID
+          type:int
+          require:1
+        name:
+          desc:活动名称
+          type:string
+          require:1
+        img:
+          desc:图片
+          type:string
+          require:1
+details:
+  name:1.2 海报详情
+  desc:海报详情
+  method:get
+  group:S
+  order:S1.2
+  params:
+    id:
+      desc:ID
+      type:int
+      require:1
+      demoValue:1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:ID
+          type:int
+          require:1
+        name:
+          desc:活动名称
+          type:string
+          require:1
+        qrcode_img:
+          desc:生成的海报图片
+          type:string
+          require:1

@@ -1,0 +1,52 @@
+index:
+  name:1.1 兑换区分类
+  desc:兑换区分类
+  method:get
+  group:F
+  order:F1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:分类名称
+          type:name
+          require:1
+        icon:  
+          desc:图标
+          type:string  
+          require:1
+        id:  
+          desc:分类ID
+          type:string  
+          require:1
+        apid:
+          desc:分类广告位ID
+          type:string
+          require:0
+brand:
+  name:1.1.1 兑换区品牌
+  desc:兑换区品牌
+  method:get
+  group:F
+  order:F1.1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:名称
+          type:name
+          require:1
+        src:  
+          desc:图标
+          type:string  
+          require:1
+        id:  
+          desc:ID
+          type:string  
+          require:1

@@ -1,0 +1,31 @@
+send-sms:
+  name:1.1 发送短信
+  desc:发送短信
+  method:post
+  group:I
+  order:I1.1
+  params:
+    account:
+      desc:手机号
+      type:mobile
+      require:1
+      remark:手机号
+      demoValue:'15828444424'
+bind:
+  name:1.2 绑定
+  desc:绑定
+  method:post
+  group:I
+  order:I1.2
+  params:
+    account:
+      desc:手机号
+      type:mobile
+      require:1
+      remark:手机号
+      demoValue:'15828444424'
+    verify_code:
+      desc:验证码
+      type:string
+      require:1
+      demoValue:123456

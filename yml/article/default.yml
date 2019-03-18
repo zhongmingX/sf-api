@@ -1,0 +1,79 @@
+category:
+  name:1.1 文章分类
+  desc:文章分类
+  method:get
+  group:J
+  order:J1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:分类名称
+          type:string
+          require:1
+        icon:
+          desc:icon
+          type:string
+          require:1
+        id:
+          desc:分类ID
+          type:int
+          require:1
+list:
+  name:1.2 列表
+  desc:文章列表 
+  method:get
+  group:J
+  order:J1.2
+  params:
+    category_id:
+      desc:分类
+      type:int
+      remark:文章分类
+      require:0
+      demoValue:0
+  response: 
+    list:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        title:
+          desc:标题
+          type:string
+          require:1
+        id:
+          desc:订单id
+          type:int
+          require:1  
+        content:  
+          desc:内容
+          type:string  
+          require:1
+        category_id:
+          desc:分类id
+          type:int
+          require:1
+        clicks:
+          desc:点击数
+          type:int  
+          require:1
+        update_time:
+          desc:更新时间
+          type:string
+          require:1
+details:
+  name:1.3 文章详情
+  desc:文章详情 返回参照列表
+  method:get
+  group:J
+  order:J1.5
+  params:
+    id:
+      desc:ID
+      type:int
+      require:1
+  response:

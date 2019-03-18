@@ -1,0 +1,446 @@
+add-for-cart:
+  name:1.1 购物车生成订单
+  desc:从购物车生成订单
+  method:post
+  group:H
+  order:H1.1
+  params:
+    id:
+      desc:购物车ID串
+      type:string
+      require:1
+      remark:购物车ID串，以逗号连接
+      demoValue:2
+    address_id:
+      desc:地址id
+      type:int
+      require:1
+      demoValue:1
+    source:
+      desc:订单来源
+      type: string
+      require:0
+      remark: 订单来源(weixin 0/alipay 1/weixinmini 4/alimini 5/union 2/other 3)
+      defaultValue:weixin
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id->result:
+          desc:对象 key 即为传的id value 为对应的id操作返回的订单ID 小于0 失败 大于 0 成功 方便发起支付等
+          type:int
+          require:1
+add-for-settlement:
+  name:1.2 结算生成订单
+  desc:从结算页面生成订单 该种支付方式无商品和地址信息 属于直接结账模式
+  method:post
+  group:H
+  order:H1.2
+  params:
+    merchants_id:
+      desc:商户id
+      type:int
+      require:1
+      remark:线下商户ID
+      demoValue:2
+    money:
+      desc:金额
+      type:float
+      require:1
+      value:
+        min:0.01
+        max:99999
+      remark:支付的金额
+      demoValue:2
+    comment:
+      desc:备注
+      type:string
+      require:0
+      demoValue:买辣椒也用劵
+    source:
+      desc:订单来源
+      type: string
+      require:0
+      remark: 订单来源(weixin 0/alipay 1/weixinmini 4/alimini 5/union 2/other 3)
+      defaultValue:weixin
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:返回的订单id 方便发起支付使用
+          type:int
+          require:1
+add-for-exchange:
+  name:1.3 线下兑换生成订单
+  desc:从线下兑换生成订单
+  method:post
+  group:H
+  order:H1.3
+  params:
+    product_info:
+      desc:商品信息
+      type:array
+      require:1
+      item:
+        pid:
+          desc:商品id
+          type:int
+          demoValue:3
+        quantity:
+          type:int
+          desc:商品数量
+          demoValue:2  
+    comment:
+      desc:备注
+      type:string
+      require:0
+      demoValue:买辣椒也用劵
+    exchange_point_id:
+      desc:兑换id
+      type:int
+      require:1
+      remark:兑换点ID
+      demoValue:1000000
+    source:
+      desc:订单来源
+      type: string
+      require:0
+      remark: 订单来源(weixin 0/alipay 1/weixinmini 4/alimini 5/union 2/other 3)
+      defaultValue:weixin
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id->result:
+          desc:对象 key 即为传的id value 为对应的id操作返回的订单ID 小于0 失败 大于 0 成功 方便发起支付等
+          type:int
+          require:1
+list:
+  name:1.4 订单列表
+  desc:订单列表
+  method:get
+  group:H
+  order:H1.4
+  params:
+    order_status:
+      desc:订单分类
+      type:int
+      remark:订单状态 0 全部  1 待支付 2 待发货 3待收货 4 完成 5关闭 6已取消
+      require:0
+      demoValue:0
+    type:
+      desc:订单类型
+      type:int
+      remark:订单类型(商城 1/兑换线上2线下21/结算3)
+      require:0
+      demoValue:0  
+      
+  response: 
+    list:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        order_sn:
+          desc:订单编号
+          type:string
+          require:1
+        id:
+          desc:订单id
+          type:int
+          require:1  
+        title:  
+          desc:订单名称
+          type:string  
+          require:1
+        order_amount:
+          desc:订单金额
+          type:float  
+          require:1
+        order_coin:
+          desc:订单可用省币
+          type:float  
+          require:1
+        pay_amount:
+          desc:订单实付金额
+          type:float  
+          require:1
+        pay_coin:
+          desc:订单实付省币
+          type:float  
+          require:1
+        ctime:
+          desc:下单时间
+          type:string  
+          require:1
+        done_time:
+          desc:完成时间
+          type:string  
+          require:1
+        cancel_time:
+          desc:取消时间
+          type:string  
+          require:1
+        close_time:
+          desc:关闭时间
+          type:string  
+          require:1      
+        pay_ctime:
+          desc:支付时间
+          type:string  
+          require:1        
+        shipping_fee:
+          desc:运费金额
+          type:float  
+          require:1      
+        comment:
+          desc:备注
+          type:string
+          require:1
+        image:
+          desc:订单图片
+          type:string
+          require:1
+        shipping_name:
+          desc:配送方式
+          type:string
+          require:1    
+        pay_name:
+          desc:支付方式
+          type:string
+          require:1  
+        product:
+          desc:商品信息
+          type:object
+          item:
+            market_price:
+              desc:市场价
+            platfrom_price:
+              desc:平台价
+            number:
+              desc:数量
+            sku_json:
+              desc:SKU json串
+details:
+  name:1.5 订单详情
+  desc:订单详情 详情参考H1.4
+  method:get
+  group:H
+  order:H1.5
+  params:
+    id:
+      desc:订单ID
+      type:int
+      require:1
+      demoValue:83
+  response:
+pay:
+  name:1.6 支付订单
+  desc:支付订单 返回jsapi支付需要的参数
+  method:post
+  group:H
+  order:H1.6
+  params:
+    data:
+      desc:订单数据 数组对象
+      type:array
+      require:1
+      item:
+        id:
+          desc:订单id
+          type:int
+          require:1
+          demoValue:83
+        is_use_coin:
+          desc:是否使用省币 
+          type:int
+          require:0
+          demoValue:1
+    is_use_balance:
+      desc:是否用余额支付
+      type:int
+      require:0
+      demoValue:0
+      remark:0 否 1 是
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        is_pay:
+          desc:是否需要三方支付
+          type:int
+          require:0
+          remark: is_wx_pay参数将在后续版本作废
+        is_wx_pay:
+            desc:是否需要三方支付
+            type:int
+            require:0
+            remark: 此参数将在后续版本作废
+        wx_package:
+          desc:微信支付包
+          type:array
+          require:0
+          remark: 此参数将在后续版本作废
+        package:
+          desc:微信支付包
+          type:array
+          require:0
+        total_money:
+          desc:第三方需要支付金额
+          type:Number
+          require:0
+operation:
+  name:1.7 操作订单
+  desc:操作订单
+  method:post
+  group:H
+  order:H1.7
+  params:
+    id:
+      desc:订单ID
+      type:int
+      require:1
+      remark:订单id
+      demoValue:83
+    type:
+      desc:操作类型
+      type:int
+      require:1
+      remark:type 1 确认收货  2 取消 3 关闭
+      demoValue:1
+  response:  
+comments-add:
+  name:1.8 评价订单
+  desc:评价订单
+  method:post
+  group:H
+  order:H1.8
+  params:
+    id:
+      desc:订单ID
+      type:int
+      require:1
+      remark:订单id
+      demoValue:83
+    score:
+      desc:分数
+      type:int
+      require:1
+      remark:N星N分
+      demoValue:5
+    content:
+      desc:内容
+      type:string
+      length
+        min:2
+        max:100
+      require:1
+      remark:评价内容
+      demoValue:很不错 
+comments-list:
+  name:1.9 评价列表
+  desc:评价列表 支持通用分页
+  method:get
+  group:H
+  order:H1.9
+  params:
+    product_id:
+      desc:商品ID
+      type:int
+      require:0
+      remark:商品id
+      demoValue:1
+    object_id:
+      desc:对象ID 
+      type:int
+      require:0
+      remark:要么为商户id 要么为兑换点id
+      demoValue:5
+    type:
+      desc:类型
+      type:int
+      require:0
+      remark:类型 参见订单类型说明
+      demoValue:1
+  response: 
+    list:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        content:
+          desc:内容
+          type:string
+          require:1
+        ctime:
+          desc:评价时间
+          type:string
+          require:1
+        member:
+          desc:用户信息
+          type:object
+          require:1  
+query-pay-info:
+  name:2.0 查询支付情况
+  desc:多个ID 以逗号连接
+  method:get
+  group:H
+  order:H2.0
+  params:
+    ids:
+      desc:订单ID串
+      type:string
+      require:0
+      demoValue:1,2
+  response: 
+    total:
+      desc:统计信息
+      type:object
+      require:1
+      item:
+        total_pay_coin:
+          desc:总的支付省币
+          type:float
+          require:1
+        total_pay_balance:
+          desc:总的支付余额
+          type:float
+          require:1
+        total_pay_amount:
+          desc:总的第三方支付
+          type:float
+          require:1 
+        total_coin:
+          desc:总的获得省币
+          type:float
+          require:1  
+    details:
+      desc:明细信息 以id为key返回
+      type:object
+      require:1
+      item:
+        pay_coin:
+          desc:支付省币
+          type:float
+          require:1
+        pay_balance:
+          desc:支付余额
+          type:float
+          require:1
+        pay_amount:
+          desc:总的第三方支付
+          type:float
+          require:1 
+        coin:
+          desc:总的获得省币
+          type:float
+          require:1

@@ -1,0 +1,26 @@
+index:
+  name:1.1 本地商铺分类
+  desc:本地商铺分类
+  method:get
+  group:E
+  order:E1.1
+  params:
+    city_id:
+      desc:城市ID
+      type:int
+      require:1
+      demoValue:5
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:分类名称
+          type:string
+          require:1
+        code:  
+          desc:ID
+          type:string  
+          require:1

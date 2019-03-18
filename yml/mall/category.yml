@@ -1,0 +1,20 @@
+index:
+  name:1.1 在线商城分类
+  desc:在线商城分类
+  method:get
+  group:D
+  order:D1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:分类名称
+          type:name
+          require:1
+        code:  
+          desc:ID
+          type:string  
+          require:1

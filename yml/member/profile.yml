@@ -1,0 +1,250 @@
+info:
+  name:1.1 用户信息
+  desc:用户信息
+  method:get
+  group:A
+  order:A1.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:用户ID（平台）
+          type:int
+          require:1
+        nickname:
+          desc:用户昵称
+          type:string
+          require:1
+        account:
+          desc:用户帐号
+          type:string  
+          require:N
+        join_time:
+          desc:加入时间
+          type:string
+          require:1
+        merchants_id:
+          desc:商家ID
+          type:int
+          require:N
+          remark:商家绑定ID（如有）
+        qrcode:
+          desc:用户推荐二维码
+          type:string
+        headimgurl:
+          desc:用户头像（微信）
+          type:string
+nickname:
+  name:1.1.1 用户昵称修改
+  desc:用户昵称修改
+  method:post
+  group:A
+  order:A1.1.1
+  params:
+    nickname:
+      desc:用户昵称
+      type:string
+      require:1
+      demoValue:张三
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+send-sms:
+  name:1.1.2.1 发送短信
+  desc:发送短信
+  method:post
+  group:A
+  order:A1.1.2.1
+  params:
+    mobile:
+      desc:手机号
+      type:mobile
+      require:1
+      demoValue:'15828444424'
+account:
+  name:1.1.2 修改手机号/帐号
+  desc:修改手机号/帐号
+  method:post
+  group:A
+  order:A1.1.2
+  params:
+    mobile:
+      desc:手机号
+      type:string
+      require:1
+      demoValue:18111223416
+    vercode:
+      desc:验证码
+      type:int
+      require:1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+gender:
+  name:1.1.3 修改用户性别
+  desc:修改用户性别
+  method:post
+  group:A
+  order:A1.1.3
+  params:
+    sex:
+      desc:性别
+      type:int
+      require:1
+      demoValue:1
+      remark:1=男|2=女|0=其它
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+address:
+  name:1.1.4 修改用户地址
+  desc:修改用户地址
+  method:post
+  group:A
+  order:A1.1.4
+  params:
+    address:
+      desc:地址
+      type:string
+      require:1
+      demoValue:四川省成都市青羊区金沙路29号
+      remark:用户在页面填写地址后组合成字符串发送
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+password:
+  name:1.1.5 用户密码设置
+  desc:用户密码设置
+  method:post
+  group:A
+  order:A1.1.5
+  params:
+    type:
+      desc:地址
+      type:int
+      require:1
+      demoValue:1
+      remark:1=登录密码|2=支付密码|3=提现密码
+    oldpassword:
+      desc:旧密码
+      type:string
+      remark:当{type}不为1时，此字段必填/否则先设置登录密码
+    newpassword:
+      desc:新密码
+      type:string
+      require:1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+open-banks:
+  name:1.1.6 获取系统银行列表
+  desc:获取系统支持银行列表
+  method:get
+  group:A
+  order:A1.1.6
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+banks:
+  name:1.1.7 获取提现银行列表
+  desc:获取提现银行列表
+  method:get
+  group:A
+  order:A1.1.7
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:用户银行ID
+          type:int
+        bank_name:
+          desc:银行名称
+          type:string
+        bank_deposit:
+          desc:开户行
+          type:string  
+        account_name:
+          desc:开户名
+          type:string
+        account:
+          desc:开户账号
+          type:string
+        ctime:
+          desc:添加时间
+          type:date
+        status:
+          desc:状态
+          type:int
+          remark:1=正常|0=封禁
+
+
+new-bank:
+  name:1.1.8 设置提现银行
+  desc:设置提现银行
+  method:post
+  group:A
+  order:A1.1.8
+  params:
+    bank_name:
+      desc:银行名称
+      type:string
+      require:1
+    bank_deposit:
+      desc:开户行
+      type:string
+      require:1 
+    account_number:
+      desc:卡号
+      type:string
+      require:1
+    account_name:
+      desc:姓名
+      type:string
+      require:1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+
+del-bank:
+  name:1.1.9 用户删除提现银行
+  desc:用户删除提现银行
+  method:post
+  group:A
+  order:A1.1.9
+  params:
+    id:
+      desc:提现银行ID
+      type:int
+      require:1
+      remark:ID由(banks接口提供)
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+

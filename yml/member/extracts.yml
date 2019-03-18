@@ -1,0 +1,66 @@
+withdraw:
+  name:1.7 用户提现
+  desc:用户发起提现
+  method:post
+  group:A
+  order:A1.7
+  params:
+    amount:
+      desc:金额
+      type:float
+      require:1
+      value:
+        min:100
+        max:5000
+      demoValue:1
+    password:
+      desc:提现密码
+      type:int
+      require:1
+      demoValue:123456
+    bank_id:
+      desc:银行id
+      type:int
+      require:1
+      demoValue:1 
+list:
+  name:1.8 用户提现申请列表
+  desc:提现列表 支持通用分页
+  method:post
+  group:A
+  order:A1.8
+  response:
+    list:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        bank_account:
+          desc:卡号
+          type:string
+          require:1
+        account_name:  
+          desc:户名
+          type:string  
+          require:1
+        bank_name:
+          desc:银行名称
+          type:string  
+          require:1
+        recored:
+          desc:备注
+          type:string  
+          require:1  
+        amount:
+          desc:金额
+          type:float  
+          require:1
+        ctime:
+          desc:提现时间
+          type:string  
+          require:1
+        status:
+          desc:提现状态
+          remark:状态(审核中 0 /未通过 2 /通过 1/完成 3)
+          type:int   
+          require:1    

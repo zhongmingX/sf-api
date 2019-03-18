@@ -1,0 +1,30 @@
+index:
+  name:1.4 系统配置
+  desc:系统配置
+  method:post  
+  group:C
+  order:C1.4
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        shop_name:
+          desc:商城名称
+          type:name
+          require:1
+        oss_host:  
+          desc:oss域HOST
+          type:string  
+          require:1
+        product_warning:
+          desc:在线商城库存预警值
+          type:int  
+          require:1
+        exchang_warning:
+          desc:兑换商品库存预警值
+          type:int  
+          require:1        
+        token:
+          desc:token

@@ -1,0 +1,95 @@
+lists:
+  name:1.5 用户推荐列表
+  desc:用户推荐列表
+  method:get
+  group:A
+  order:A1.5
+  params:
+    page_size:
+      desc:每页显示条数
+      type:int
+      reqiure:N
+      demoValue=10
+    page_num:
+      desc:当前页
+      type:int
+      require:N
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        total:
+          desc:总页数
+          type:int
+          require:1
+        page_size:
+          desc:页面显示条数
+          type:int
+          require:1
+        page_num:
+          desc:当前页码
+          type:int
+          require:1
+        lists:
+          desc:数据集
+          type:array
+          require:1
+          item:
+            member_id:
+              desc:用户ID
+              type:string
+              require:1
+              remark:用户ID将隐藏后四位数字
+            total_amount:
+              desc:用户平台总消费金额
+              type:float
+              require:1
+            amount:
+              desc:佣金
+              type:float
+              require:1
+
+info:
+  name:1.5.1 用户推荐-信息
+  desc:用户推荐-信息
+  method:get
+  group:A
+  order:A1.5.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        num:
+          desc:用户招商商家数量
+          type:int
+          require:1
+        amount:
+          desc:招商总收入
+          type:float
+          require:1
+        qrcode:
+          desc:推荐二维码
+          type:string
+          require:N
+          remark:推荐二维码使用微信生成的永久二维码图片，通过公众号事件消息处理关系
+
+qrcode:
+  name:1.5.2 用户推荐-推荐二维码
+  desc:用户推荐-推荐二维码
+  method:get
+  group:A
+  order:A1.5.2
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        url:
+          desc:二维码链接
+          type:string
+          require:N

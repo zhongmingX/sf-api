@@ -1,0 +1,52 @@
+banner:
+  name:1.2 banner
+  desc:获取banner
+  method:get
+  group:C
+  order:C1.2
+  params:
+    pos:
+      desc:banner位置
+      type:string
+      require:0
+      demoValue:local
+      remark: 位置 如 local
+  response:
+    data:
+      desc:我是示例输出
+      type:double
+      require:0
+      remark:单位元，如：100.20 ，出错时，该字段不存在
+adps:
+  name:1.3 广告位
+  desc:广告位
+  method:get
+  group:C
+  order:C1.3
+  params:
+    id:
+      desc:ID/根据TYPE变化
+      type:int
+      require:1
+      remark:当TYPE为category时取分类ID，否则取广告位ID
+    type:
+      desc:类型
+      type:string
+      require:0
+      remark:category|adp
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        name:
+          desc:城市名称
+          type:name
+          require:1
+        code:
+          desc:城市编码
+          type:string
+          require:1
+        id:
+          desc:ID

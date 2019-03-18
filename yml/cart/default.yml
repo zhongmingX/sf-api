@@ -1,0 +1,152 @@
+add:
+  name:1.1 加入购物车
+  desc:添加商品进入购物车
+  method:post
+  group:G
+  order:G1.1
+  params:
+    type:
+      desc:商品类型
+      type:int
+      enum:,0,1
+      require:1
+      demoValue:0
+      remark:类型 0 商城商品 1 兑换商品
+    exchange_point_id:
+      desc:兑换点ID
+      type:int
+      require:0
+      demoValue:0
+      remark:当type 1 时必传
+    product_id:
+      desc:商品ID
+      type:int
+      require:1
+      demoValue:1
+    quantity:
+      desc:购买数量
+      type:int
+      require:1
+      demoValue:1
+    sku_id:
+      desc:SKU ID
+      type:int
+      require:0
+      demoValue:1
+    sku_json:
+      desc:sku json串
+      type:int
+      require:0
+      remark:"{'颜色':'白色'}"
+      demoValue:
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:购物车ID
+          type:int
+          require:1
+list:
+  name:1.2 购物车列表
+  desc:商品列表
+  method:get
+  group:G
+  order:G1.2
+  response:
+    list:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        id:
+          desc:购物车ID
+          type:name
+          require:1
+        object_id:
+          desc:对象ID 
+          type:int
+          remark:当type为 0 商家id 如果为1 兑换点id
+          require:1 
+        type:
+          desc:类型
+          type:int
+          remark:类型 0 商城商品 1 兑换商品
+          require:1
+        product_id:
+          desc:商品ID
+          type:int
+          require:1
+        product_name:
+          desc:商品名称
+          type:int
+          require:1
+        product_img:
+          desc:商品图标
+          type:int
+          require:1
+        limit:
+          desc:限购数
+          type:int
+          require:1
+        quantity:
+          desc:数量
+          type:int
+          require:1 
+        market_price:
+          desc:市场价
+          type:float
+          require:1
+        price:
+          desc:价格
+          type:float
+          require:1
+        coin:
+          desc:省币
+          type:float
+          require:1
+        comment:
+          desc:备注
+          type:string
+          require:1
+        sku_json:
+          desc:sku json
+          type:string
+          require:1
+        sku_id:
+          desc:sku id
+          type:string
+          require:1 
+edit:
+  name:1.3 操作购物车
+  desc:操作购物车
+  method:post
+  group:G
+  order:G1.3
+  params:
+    op_type:
+      desc:操作类型
+      type:int
+      enum:1,2
+      require:1
+      demoValue:1
+      remark:操作 1 编辑 2 删除
+    id:
+      desc:数据ID
+      type:int
+      require:1
+      demoValue:2
+    quantity:
+      desc:数量的字段 
+      type:string
+      remark:comment 备注  quantity 数量
+      require:0
+      demoValue:1 
+    comment:
+      desc:数量的字段 
+      type:string
+      remark:comment 备注  quantity 数量
+      require:0
+      demoValue:我是备注

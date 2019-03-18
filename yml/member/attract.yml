@@ -1,0 +1,104 @@
+lists:
+  name:1.4 用户招商列表
+  desc:用户招商列表
+  method:get
+  group:A
+  order:A1.4
+  params:
+    page_size:
+      desc:每页显示条数
+      type:int
+      reqiure:N
+      demoValue=10
+    page_num:
+      desc:当前页
+      type:int
+      require:N
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        total:
+          desc:总页数
+          type:int
+          require:1
+        page_size:
+          desc:页面显示条数
+          type:int
+          require:1
+        page_num:
+          desc:当前页码
+          type:int
+          require:1
+        lists:
+          desc:数据集
+          type:array
+          require:1
+          item:
+            name:
+              desc:商家名字
+              type:string
+              require:1
+            account:
+              desc:商家帐号
+              type:string
+              require:1
+            merchant_id:
+              desc:商家平台ID
+              type:int
+              require:1
+            reg_date:
+              desc:商家注册时间
+              type:date
+              require:1
+            merchant_logo:
+              desc:商家店招/logo
+              type:string
+              require:N
+
+info:
+  name:1.4.1 用户招商-招商统计
+  desc:用户招商-招商统计
+  method:get
+  group:A
+  order:A1.4.1
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:1
+      item:
+        num:
+          desc:用户招商商家数量
+          type:int
+          require:1
+        amount:
+          desc:招商总收入
+          type:float
+          require:1
+        audit:
+          desc:审核状态
+          type:int
+          require:1
+
+relate:
+  name:1.4.2 用户招商-添加商家关系
+  desc:用户招商-添加商家关系
+  method:get
+  group:A
+  order:A1.4.2
+  params:
+    merchants_id:
+      desc:商家ID
+      type:int
+      require:1
+      demoValue:1003302
+      remark:商家ID为必填项
+  response:
+    data:
+      desc:数据集
+      type:array
+      require:N
+
